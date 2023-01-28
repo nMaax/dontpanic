@@ -11,6 +11,6 @@ Don't panic fornisce
 1. Una classe per gestire le date, in un formato a scelta dell'utente o standard (formato ISO)
 2. Una classe contentente una serie di metodi utili per modificare vari dati
 
-Don't panic è stato creato con l'utilizzo di [ChatGPT](https://chat.openai.com/chat) di OpenAI, e con alcuni ritocchi apportati da altri contributori della libreria
-
 Se trovi dei bug in Don't panic segnalamelo in privato su Telegram e/o WhatasApp o proponendo un modifica qui su GitHub.
+
+> ***Note*** Don't panic è stato creato con l'utilizzo di [ChatGPT](https://chat.openai.com/chat) di OpenAI, e con alcuni ritocchi apportati da altri contributori della libreria
