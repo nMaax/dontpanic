@@ -11,7 +11,7 @@ package dontpanic;
  * In case you didn't the class could both show you wrong data or raise errors
  * @author ChatGPT
  * @author Massimiliano Carli
- * @author Alcuni ragazz* del corso di OOP al Politecnico di Torino A.A. 2022/2023
+ * @author Alcun* ragazz* del corso di OOP al Politecnico di Torino A.A. 2022/2023
  */
 public class TimestampHandler implements Comparable<TimestampHandler>{
     
