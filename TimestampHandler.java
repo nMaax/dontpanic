@@ -9,9 +9,9 @@ package dontpanic;
  */
 public class TimestampHandler implements Comparable<TimestampHandler>{
 	
-	public static String ISO_FORMAT_PLAIN = "YYYY-MM-DD hh:mm:ss";
-	public static String ISO_FORMAT_PERCENT = "%04d-%02d-%02d %02d:%02d:%02d";
-	private String format;
+    public static String ISO_FORMAT_PLAIN = "YYYY-MM-DD hh:mm:ss";
+    public static String ISO_FORMAT_PERCENT = "%04d-%02d-%02d %02d:%02d:%02d";
+    private String format;
 
     private int year;
     private int month;
