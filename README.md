@@ -1,10 +1,10 @@
-# Don't Panic
+# 📕 Don't Panic
 
 Don't panic è una "libreria" java creata per avere del codice da riusare il giorno dell'esame di OOP al Politecnico di Torino.
 
-| IMPORTANTE ‼️ |
-|-|
-| Don't panic potrebbe contenere degli errori al suo interno, controlla sempre il codice prima di usarlo. Dato che il codice è open source e controllabile da tutti il sottoscritto non si assume alcuna responsabilità nel caso ciò accada e in ogni caso non si assume alcuna responsabilita dell'uso che se ne farà chi riutilizzera questo codice (per esempio se il professore vieta esplicitamente l'utilizzo di codice personale portato da casa)|
+|<p style="text-align: center;">‼️ <strong>IMPORTANTE</strong> ‼️</p>|
+|------------------------------------------------------------------|
+|<p style="text-align: center;">Don't panic potrebbe contenere degli errori al suo interno, controlla sempre il codice prima di usarlo. Dato che il codice è open source e controllabile da tutti il sottoscritto non si assume alcuna responsabilità dell'uso che l'utente farà di Don't panic, ovviamente il sottoscritto non si assume alcuna responsabilità nemmeno nel caso in cui un bug presente in Don't panic causi un errore nei test dell'esame a colui che lo utilizza</p>|
 
 Don't panic fornisce
 
