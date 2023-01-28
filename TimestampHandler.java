@@ -20,7 +20,7 @@ public class TimestampHandler implements Comparable<TimestampHandler>{
     private String format;
 
     private int year;
-    private int month;
+    private int month;	
     private int day;
     private int hour;
     private int minute;
@@ -53,14 +53,25 @@ public class TimestampHandler implements Comparable<TimestampHandler>{
         this.minute = Integer.parseInt(timestamp.substring(minuteIndex, minuteIndex + 2));
         this.second = Integer.parseInt(timestamp.substring(secondIndex, secondIndex + 2));
         
+        boolean isLeapYear = false;
+        if ((this.year % 4 == 0 && this.year % 100 != 0) || (this.year % 400 == 0)) {
+            isLeapYear = true;
+        }
+        
+        int[] daysInMonthCatalog = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int daysInMonth = daysInMonthCatalog[month - 1];
+        if (month == 2 && isLeapYear) {
+            daysInMonth++;
+        }
+        
         if (this.year < 0 || this.year > 9999) {
             throw new IllegalArgumentException("Invalid year value: " + this.year);
         }
         if (this.month < 1 || this.month > 12) {
             throw new IllegalArgumentException("Invalid month value: " + this.month);
         }
-        if (this.day < 1 || this.day > getDaysInMonth()) {
-            throw new IllegalArgumentException("Invalid day value: " + this.day);
+        if (this.day < 1 || this.day > daysInMonth) {
+            throw new IllegalArgumentException("Invalid day value: " + this.day + " for month: " + this.month);
         }
         if (this.hour < 0 || this.hour > 23) {
             throw new IllegalArgumentException("Invalid hour value: " + this.hour);
