@@ -16,7 +16,8 @@
 	public class TimestampHandler implements Comparable<TimestampHandler>{
 		
 		/**A string rappresenting the iso format: YYYY-MM-DD hh:mm:ss*/
-	    public static String ISO_FORMAT_PLAIN = "YYYY-MM-DD hh:mm:ss";
+		public static String ISO_FORMAT_PLAIN = "YYYY-MM-DD hh:mm:ss";
+	    
 	    /**A string rappresenting the iso format compatible with java built-in static method Strig.format()*/
 	    public static String ISO_FORMAT_JAVAF = "%04d-%02d-%02d %02d:%02d:%02d";
 	    private String format;
@@ -69,12 +70,20 @@
 	        this.year = Integer.parseInt(timestamp.substring(yearIndex, yearIndex + 4));
 	        this.month = Integer.parseInt(timestamp.substring(monthIndex, monthIndex + 2));
 	        this.day = Integer.parseInt(timestamp.substring(dayIndex, dayIndex + 2));
-	        if (hourIndex == -1 || minuteIndex == -1 || secondIndex == -1) {
+	        
+	        if (hourIndex == -1) {
 	        	this.hour = 0;
+	        }
+	        
+	        if (minuteIndex == -1) {
 	        	this.minute = 0;
+	        }
+	        
+	        if (secondIndex == -1) {
 	        	this.second = 0;
 	        }
-        	else {
+	        
+	        if (hourIndex != -1 && minuteIndex != -1 && secondIndex != -1) {
 	        	this.hour = Integer.parseInt(timestamp.substring(hourIndex, hourIndex + 2));
 	        	this.minute = Integer.parseInt(timestamp.substring(minuteIndex, minuteIndex + 2));
 		        this.second = Integer.parseInt(timestamp.substring(secondIndex, secondIndex + 2));
