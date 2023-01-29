@@ -4,7 +4,7 @@ dontpanic è una "libreria" java creata per avere del codice da riusare il giorn
 
 |:heavy_exclamation_mark: **IMPORTANTE** :heavy_exclamation_mark:|
 |------------------------------------------------------------------|
-|dontpanic potrebbe contenere degli errori al suo interno, controlla sempre il codice prima di usarlo. Dato che il codice è open source e controllabile da tutti il sottoscritto non si assume alcuna responsabilità dell'uso che l'utente farà di dontpanic, ovviamente il sottoscritto non si assume alcuna responsabilità nemmeno nel caso in cui un bug presente in dontpanic causi un errore nei test dell'esame a colui che lo utilizza|
+|dontpanic potrebbe contenere degli errori al suo interno, controlla sempre il codice prima di usarlo. Dato che il codice è open source e controllabile da tutti il sottoscritto non si assume alcuna responsabilità dell'uso che l'utente farà di dontpanic, ovviamente il sottoscritto non si assume alcuna responsabilità nemmeno nel caso in cui un bug presente in dontpanic causi un errore nei test dell'esame a colui che lo utilizza.|
 
 dontpanic fornisce
 
