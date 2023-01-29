@@ -1,7 +1,7 @@
 package dontpanic;
 
 /**
- * A collection of functions that you can copy and paste in your code where needed.
+ * A collection of functions that you can copy and paste in your code when needed.
  * */
 public class Utils {
 	
