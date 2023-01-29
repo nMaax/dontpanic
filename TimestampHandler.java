@@ -852,7 +852,6 @@ public class TimestampHandler implements Comparable<TimestampHandler>{
 		
 	    this.day -= days;
 	    while (this.day <= 0) {
-	    	//TODO? cosa succede se vaco un -1 a 01 01 2004? (vado da non lep a lep)
 	    	this.day += getDaysInMonth(this.month-1, this.year);
 	    	decreaseMonths(1);
 	    }
