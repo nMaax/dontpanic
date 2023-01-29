@@ -43,12 +43,12 @@ public class Utils {
 	 * <code>String.format("%04d", 42) //output: 0042</code>
 	 * <hr>
 	 * e.g.
-	 * <pre>
-	 * <code>num = 3 	digits = 3 	returns	"003"</code>
-	 * <code>num = 100	digits = 5 	returns	"00100"</code>
-	 * <code>num = 42 	digits = 2 	returns	"42"</code>
-	 * <code>num = 654	digits = 1 	returns	"654"</code>
-	 * </pre>
+	 * <pre><code>
+	 * num = 3 	digits = 3 	returns	"003"
+	 * num = 100	digits = 5 	returns	"00100"
+	 * num = 42 	digits = 2 	returns	"42"
+	 * num = 654	digits = 1 	returns	"654"
+	 * </code></pre>
 	 * @param num The number to be formatted
 	 * @param digits The number of digits required
 	 * @return The String rappresenting the formatted number
