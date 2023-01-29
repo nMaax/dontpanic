@@ -9,6 +9,9 @@ package dontpanic;
  * <br>
  * The format can eventually include "hh" for 2-digit hours, "mm" for 2-digit minutes, and "ss" for 2-digit seconds.
  * <br><br>
+ * This class will consider the differences in leap years and days in each specific month, 
+ * use TimestampHandlerLite if you want a class do not do it.
+ * <br><br>
  * Note: This class will <i><b>not</b></i> check if you passed the right parameters or right values.
  * In case you didn't the class could both show you wrong data or raise errors.
  * @version 22.23
