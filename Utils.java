@@ -38,15 +38,17 @@ public class Utils {
 	 * Given an integer to format and a second integer indicating in how many digits it should be formatted, returns a string with the formatted number composed of as many zeros in front as are missing.
 	 * <br><br>
 	 * You could also use String.format() for the same purpose, 
-	 * it is more readable and less prone to errors.
-	 * <p style="font-family:'Courier New'">String.format("%04d", 42) //0042</p>
+	 * it is more readable and less prone to errors:
+	 * <br><br>
+	 * <code>String.format("%04d", 42) //output: 0042</code>
 	 * <hr>
 	 * e.g.
-	 * <br><br>
-	 * <p style="font-family:'Courier New'">num = 3, digits = 3 --> "003"</p>
-	 * <p style="font-family:'Courier New'">num = 100, digits = 5 --> "00100"</p>
-	 * <p style="font-family:'Courier New'">num = 42, digits = 2 --> "42"</p>
-	 * <p style="font-family:'Courier New'">num = 654, digits = 1 --> "654"</p>
+	 * <pre>
+	 * <code>num = 3 	digits = 3 	returns	"003"</code>
+	 * <code>num = 100	digits = 5 	returns	"00100"</code>
+	 * <code>num = 42 	digits = 2 	returns	"42"</code>
+	 * <code>num = 654	digits = 1 	returns	"654"</code>
+	 * </pre>
 	 * @param num The number to be formatted
 	 * @param digits The number of digits required
 	 * @return The String rappresenting the formatted number
@@ -181,9 +183,9 @@ public class Utils {
 	 * it is more readable and less prone to errors as it does 
 	 * not rely on special characters or loops.
 	 * </i>
-	 * <br>
-	 * <p style="font-family:'Courier New'">System.out.println(Arrays.toString(arr));</p>
-	 * <br>
+	 * <br><br>
+	 * <code>System.out.println(Arrays.toString(arr));</code>
+	 * <br><br>
 	 * Eventually you can adapt this code to all kinds of objects
 	 * @param arr the array to be printed
 	 */
