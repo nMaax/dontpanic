@@ -97,7 +97,14 @@ public class TimestampHandler implements Comparable<TimestampHandler>{
 		}
 		
 		int[] daysInMonthCatalog = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-		int daysInMonth = daysInMonthCatalog[month - 1];
+		
+		int daysInMonth = 0;
+		try {
+			daysInMonth = daysInMonthCatalog[month - 1];
+		} catch(ArrayIndexOutOfBoundsException e) {
+			throw new IllegalArgumentException("Invalid month value: " + this.month);
+		}
+		
 		if (month == 2 && isLeapYear) {
 			daysInMonth++;
 		}
@@ -319,12 +326,27 @@ public class TimestampHandler implements Comparable<TimestampHandler>{
 	
 	/**
 	 * Returns the number of days in the current month of the timestamp.
+	 * <br>
+	 * If the value 0 is passed it will returns the days in december (as for month = 12), for -1 will return as for month = 11 etc.
+	 * <br>
+	 * Respectivelly if the value is 13 it will return as for month = 1, for 14 will return as for month = 2 etc. 
 	 *
 	 * @return the number of days in the current month
 	 */
 	public int getDaysInMonth() {
 		int[] daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-		int days = daysInMonth[this.month - 1];
+		
+		int index = month - 1;
+		while (index < 0) {
+			index = daysInMonth.length + index;
+			//index = daysInMonth.length + index + 1;
+		}
+		while (index >= daysInMonth.length) {
+			index = index % daysInMonth.length;
+		}
+		
+		month = index + 1;
+		int days = daysInMonth[index];
 		if (this.month == 2 && isLeapYear()) {
 			days++;
 		}
@@ -332,20 +354,12 @@ public class TimestampHandler implements Comparable<TimestampHandler>{
 	}
 	
 	/**
-	 * Returns the number of days in the month passed as parameter considering the corrispondent year as not leap
-	 *
-	 * @param month The month as an integer, from 1 o 12
-	 * @return the number of days in the current month
-	 */
-	public static int getDaysInMonth(int month) {
-		int[] daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-		int days = daysInMonth[month - 1];
-		return days;
-	}
-	
-	/**
 	 * Returns the number of days in the month passed as parameter 
 	 * considering if the year passed as parameter is leap or not.
+	 * <br>
+	 * If the value 0 is passed it will returns the days in december (as for month = 12), for -1 will return as for month=11 etc.
+	 * <br>
+	 * Respectivelly if the value is 13 it will return as for month = 1 etc. 
 	 * 
 	 * @param month The month as an integer, from 1 o 12
 	 * @param year The year as an integer
@@ -353,7 +367,18 @@ public class TimestampHandler implements Comparable<TimestampHandler>{
 	 */
 	public static int getDaysInMonth(int month, int year) {
 		int[] daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-		int days = daysInMonth[month - 1];
+		
+		int index = month -1;
+		while (index < 0) {
+			index = daysInMonth.length + index;
+			//index = daysInMonth.length + index + 1;
+		}
+		while (index >= daysInMonth.length) {
+			index = index % daysInMonth.length;
+		}
+		
+		month = index + 1;
+		int days = daysInMonth[index];
 		if (month == 2 && TimestampHandler.isLeapYear(year)) {
 			days++;
 		}
@@ -638,6 +663,136 @@ public class TimestampHandler implements Comparable<TimestampHandler>{
 	 */
 	public String toStringISO() {
 		return String.format(ISO_FORMAT_JAVAF, year, month, day, hour, minute, second);
+	}
+	
+	public void increaseSeconds(int seconds) {
+		
+		this.second += seconds;
+		if (this.second >= 60) {
+			int extraMinutes = this.second / 60;
+			this.second %= 60;
+			increaseMinutes(extraMinutes);
+		}
+	}
+
+	public void increaseMinutes(int minutes) {
+		
+		this.minute += minutes;
+		if (this.minute >= 60) {
+			int extraHours = this.minute / 60;
+			this.minute %= 60;
+			increaseHours(extraHours);
+		}
+	}
+
+	public void increaseHours(int hours) {
+		this.hour += hours;
+		if (this.hour >= 24) {
+			int extraDays = this.hour / 24;
+			this.hour %= 24;
+			increaseDays(extraDays);
+		}
+	}
+
+	/**
+	 * Increases the day of the timestamp by the given number of days.
+	 *
+	 * @param days the number of days to increase the timestamp by
+	 */
+	public void increaseDays(int days) {
+		int daysInMonth = getDaysInMonth();
+		this.day += days;
+		while (this.day > daysInMonth) {
+			this.day -= daysInMonth;
+			increaseMonths(1);
+			daysInMonth = getDaysInMonth();
+		}
+	}
+
+	/**
+	 * Increases the month of the timestamp by the given number of months.
+	 *
+	 * @param months the number of months to increase the timestamp by
+	 */
+	public void increaseMonths(int months) {
+		this.month += months;
+		while (this.month > 12) {
+			this.month -= 12;
+			increaseYears(1);
+		}
+	}
+
+	/**
+	 * Increases the year of the timestamp by the given number of years.
+	 *
+	 * @param years the number of years to increase the timestamp by
+	 */
+	public void increaseYears(int years) {
+		this.year += years;
+		if (this.year > 9999) {
+			this.year = 9999;
+			this.month = 12;
+			this.day = 31;
+			this.hour = 23;
+			this.minute = 59;
+			this.second = 59;
+		}
+	}
+
+	public void decreaseSeconds(int seconds) {
+		this.second -= seconds;
+		if (this.second < 0) {
+			int extraMinutes = (this.second / 60) - 1;
+			this.second += -(extraMinutes) * 60;
+			decreaseMinutes(extraMinutes * -1);
+		}
+	}
+
+	public void decreaseMinutes(int minutes) {
+		this.minute -= minutes;
+		if (this.minute < 0) {
+			int extraHours = (this.minute / 60) - 1;
+			this.minute += -(extraHours) * 60;
+			decreaseHours(extraHours * -1);
+		}
+	}
+
+	public void decreaseHours(int hours) {
+		this.hour -= hours;
+		if (this.hour < 0) {
+			int extraDays = (this.hour / 24) - 1;
+			this.hour += -(extraDays) * 24;
+			decreaseDays(extraDays * -1);
+		}
+	}
+
+	public void decreaseDays(int days) {
+		this.day -= days;
+		while (this.day <= 0) {
+			//TODO? cosa succede se vaco un -1 a 01 01 2004? (vado da non lep a lep)
+			this.day += getDaysInMonth(this.month-1, this.year);
+			decreaseMonths(1);
+		}
+	}
+
+	public void decreaseMonths(int months) {
+		this.month -= months;
+		while (this.month <= 0) {
+			this.month += 12;
+			decreaseYears(1);
+		}
+	}
+
+	public void decreaseYears(int years) {
+		this.year -= years;
+		if (this.year < 0) {
+			this.year = 0;
+			this.month = 1;
+			this.day = 1;
+			this.hour = 0;
+			this.minute = 0;
+			this.second = 0;
+		}
 	}
 	
 }
