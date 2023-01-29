@@ -31,7 +31,8 @@ public class TimestampHandler implements Comparable<TimestampHandler>{
      * The timestamp should include "YYYY" for the year, "MM" for the month, "DD" for the day,
      * "hh" for the hour, "mm" for the minute, and "ss" for the second.
      * <br><br>
-     * <mark>If you want to handle dates only, set hh:mm:ss to 00:00:00</mark>
+     * <i>The class is able to handle dates only values too, just pass YYYY, MM and DD in the format,
+     * in that case hh:mm:ss will be set to 00:00:00</i>
      * @param timestamp the timestamp in the specified format
      * @param format the format of the timestamp, including "YYYY", "MM", "DD", "hh", "mm", and "ss"
      */
@@ -49,9 +50,17 @@ public class TimestampHandler implements Comparable<TimestampHandler>{
         this.year = Integer.parseInt(timestamp.substring(yearIndex, yearIndex + 4));
         this.month = Integer.parseInt(timestamp.substring(monthIndex, monthIndex + 2));
         this.day = Integer.parseInt(timestamp.substring(dayIndex, dayIndex + 2));
-        this.hour = Integer.parseInt(timestamp.substring(hourIndex, hourIndex + 2));
-        this.minute = Integer.parseInt(timestamp.substring(minuteIndex, minuteIndex + 2));
-        this.second = Integer.parseInt(timestamp.substring(secondIndex, secondIndex + 2));
+        if (hourIndex == -1 || minuteIndex == -1 || secondIndex == -1) {
+            this.hour = 0;
+            this.minute = 0;
+            this.second = 0;
+        }
+        else {
+            this.hour = Integer.parseInt(timestamp.substring(hourIndex, hourIndex + 2));
+            this.minute = Integer.parseInt(timestamp.substring(minuteIndex, minuteIndex + 2));
+            this.second = Integer.parseInt(timestamp.substring(secondIndex, secondIndex + 2));
+        }
+        
         
         boolean isLeapYear = false;
         if ((this.year % 4 == 0 && this.year % 100 != 0) || (this.year % 400 == 0)) {
