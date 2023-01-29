@@ -15,7 +15,9 @@ package dontpanic;
  */
 public class TimestampHandler implements Comparable<TimestampHandler>{
     
+    /**A string rappresenting the iso format: YYYY-MM-DD hh:mm:ss*/
     public static String ISO_FORMAT_PLAIN = "YYYY-MM-DD hh:mm:ss";
+    /**A string rappresenting the iso format compatible with java built-in static method Strig.format()*/
     public static String ISO_FORMAT_JAVAF = "%04d-%02d-%02d %02d:%02d:%02d";
     private String format;
 
