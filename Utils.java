@@ -37,7 +37,9 @@ public class Utils {
 	/**
 	 * Given an integer to format and a second integer indicating in how many digits it should be formatted, returns a string with the formatted number composed of as many zeros in front as are missing.
 	 * <br><br>
-	 * <mark>Alternativa nativa di Java 5: String.format()</mark> <i>(guarda il commento dentro il metodo per approfondire)</i>
+	 * You could also use String.format() for the same purpose, 
+	 * it is more readable and less prone to errors.
+	 * <p style="font-family:'Courier New'">String.format("%04d", 42) //0042</p>
 	 * <hr>
 	 * e.g.
 	 * <br><br>
@@ -74,9 +76,41 @@ public class Utils {
 	}
 	
 	/**
+	 * Sorts an array of integers in ascending order using the bubble sort algorithm.
+	 * <mark>This method do not return a new array, it directly modifies the parameter.</mark>
+	 * <br><br>
+	 * Eventually you can adapt this code to all kinds of objects just by:
+	 * <ol> 
+	 * 	<li>implementing a compareTo() method</li>
+	 * 	<li>modifing the if statement using compareTo()</li>
+	 * </ol>
+	 * @param arr the array to be sorted
+	 * @return A boolean value, true if the array has been modified, false otherwise
+	 */
+	public boolean bubbleSort(int[] arr) {
+		boolean output = false;
+	    int n = arr.length;
+	    for (int i = 0; i < n-1; i++) {
+	        for (int j = 0; j < n-i-1; j++) {
+	            if (arr[j] > arr[j+1]) {
+	                // swap arr[j] and arr[j+1]
+	                int temp = arr[j];
+	                arr[j] = arr[j+1];
+	                arr[j+1] = temp;
+	                output = true;
+	            }
+	        }
+	    }
+	    return output;
+	}
+
+	
+	/**
 	 * Modifies an array removing holes, keeping the same order of values.
 	 * <br><br>
 	 * <mark>This method do not return a new array, it directly modifies the parameter.</mark>
+	 * <br><br>
+	  Eventually you can adapt this code to primitive types too
 	 * @param array The array that needs to modified
 	 * @return a boolean value, true if the array has been modified, false otherwise
 	 * */
@@ -101,6 +135,7 @@ public class Utils {
 	
 	/**
 	 * Returns true if there is a null before a value different from null in an array
+	 * Eventually you can adapt this code to primitive types too
 	 * @param array The array that needs to be controlled
 	 * @return a boolean value, false if all null values (if they exists) are all placed at the end of the array, true otherwise
 	 * */
@@ -121,7 +156,9 @@ public class Utils {
 	
 	/**
 	 * Given an array of objects returns true if it contains the other object passed by parameter. 
-	 * Note: works only for if the method Object.equals() is defined into the memembers of the array
+	 * Note: works only for if the method Object.equals() is defined into the memembers of the array.
+	 * <br>
+	 * Eventually you can adapt this code to primitive types too
 	 * @param objects The array that needs to be controlled
 	 * @param object The object that needs to be spotted into the array
 	 * @return a boolean value, true if object is contained into the array, false otherwise
@@ -135,6 +172,28 @@ public class Utils {
 		}
 		return output;
 	}
+	
+	/**
+	 * The printArray method prints all the elements of an array to the console.
+	 * <br><br>
+	 * <i>
+	 * You could also use Arrays.toString(arr) for the same purpose, 
+	 * it is more readable and less prone to errors as it does 
+	 * not rely on special characters or loops.
+	 * </i>
+	 * <br>
+	 * <p style="font-family:'Courier New'">System.out.println(Arrays.toString(arr));</p>
+	 * <br>
+	 * Eventually you can adapt this code to all kinds of objects
+	 * @param arr the array to be printed
+	 */
+	public static void printArray(int[] arr) {
+	    for (int i = 0; i < arr.length; i++) {
+	        System.out.print(arr[i] + " ");
+	    }
+	    System.out.println();
+	}
+
 	
 	/**
 	 * Returns a boolean indicating whether the given string contains any of the characters in the given charset.
