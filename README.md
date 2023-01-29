@@ -9,7 +9,8 @@ dontpanic è una "libreria" java creata per avere del codice da riusare il giorn
 dontpanic fornisce:
 
 1. Una classe per gestire le date (considerando anche anni bisestili e il fatto che nei vari mesi il numero di giorni cambia), in un formato a scelta dell'utente o in formato standard (formato ISO: `YYYY-MM-DD hh:mm:ss`)
-2. Una classe contentente una serie di metodi utili per modificare vari dati
+2. La stessa classe per gestire le date, ma in versione light (dove tutti i mesi hanno 31 giorni e gran parte dei metodi precedenti sono stati rimossi se sostituibili da altri)
+3. Una classe contentente una serie di metodi utili per modificare vari dati
 
 > ***Warning*** attent* a usare i metodi increaseSecond/.../Days/Month/Year() e decreaseSecond/.../Days/Month/Year(), le probabilità che ci sia un bug in quei metodi è **più alta** rispetto a gli altri, specialmente per valori numerici molto alti!
 
