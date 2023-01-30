@@ -10,10 +10,10 @@ package dontpanic;
  * The format can eventually include "hh" for 2-digit hours, "mm" for 2-digit minutes, and "ss" for 2-digit seconds.
  * <br><br>
  * This class will consider the differences in leap years and days in each specific month, 
- * use TimestampHandlerLite if you want a class do not do it.
+ * use TimestampHandlerLite if you want a class that do not do it.
  * <br><br>
- * Note: This class will <i><b>not</b></i> check if you passed the right parameters or right values.
- * In case you didn't the class could both show you wrong data or raise errors.
+ * Note: This class will <i><b>not always</b></i> check if you passed the right parameters or right values. Some checks are done in setters, constructor and similar methods but not everything is covered.
+ * Consider that in case you didn't pass right parameters the class could both show you wrong data or raise errors.
  * @version 22.23
  * @author ChatGPT
  * @author nMaax (Massimiliano)
@@ -40,9 +40,9 @@ public class TimestampHandler implements Comparable<TimestampHandler>{
     private int second;
     
     /**
-     * Constructor that takes in a timestamp in the format specified by the user specified with the second parameter.
-     * The format must include "YYYY" for the year, "MM" for the month, "DD" for the day, and eventually can include
-     * "hh" for the hour, "mm" for the minute, and "ss" for the second.
+     * Constructor that takes in a timestamp in the format specified by the user, the format is specified with the second parameter.
+     * The format must include "YYYY" for the year, "MM" for the month and "DD" for the day. 
+     * Eventually can include "hh" for the hour, "mm" for the minute, and "ss" for the second.
      * <br><br>
      * e.g
      * <br><br>
@@ -51,9 +51,6 @@ public class TimestampHandler implements Comparable<TimestampHandler>{
      * <code>TimestampHandler timestamp = new TimestampHandler("2024-02-25", "YYYY-MM-DD")</code> creates a timestamp at 25 Feb 2024, with no time (more technically the time is set to midnight: 00:00:00)
      * <br><br>
      * <code>TimestampHandler timestamp = new TimestampHandler("2024-25-01 15:30:23", "YYYY-DD-MM ss:mm:hh")</code> creates a timestamp at 25 Jan 2024 at 23:30:15
-     * <br><br>
-     * <i>The class is able to handle dates only values too, just pass YYYY, MM and DD in the format,
-     * in that case hh:mm:ss will be set to 00:00:00</i>
      * @param timestamp the timestamp in the specified format
      * @param format the format of the timestamp, mandatory including "YYYY", "MM", "DD", and eventually including any of "hh", "mm", and "ss"
      * @throws IllegalArgumentException if the any of the values passed is not in the acceptable corrispondent range:
