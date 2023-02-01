@@ -1,5 +1,8 @@
 package dontpanic;
 
+import java.time.*;
+
+
 /**
  * A collection of functions that you can copy and paste in your code when needed.
  * */
@@ -8,7 +11,6 @@ public class Utils {
 	/*
 	 
 	 *** Cose da sapere utili ***
-
 	1.	Se devi comparare due valori double in un metodo int compareTo() non è necessario castare
 		da double a int (anzi, perderesti dei valori decimali che potrebbero falsificare il risultato)
 		usa invece la funzione Double.compare(double d1, double d2)
@@ -33,6 +35,32 @@ public class Utils {
 		 		String.format("%01d", 42) -->   42
 	 
 	 * */
+	
+	/**
+	 * Given two TimestampHandler returns the duration between them using the java.time library.
+	 * <br><br>
+	 * Edit this method has you need it: you can change toDays() to toYear(), toMonth(), toHour() etc.
+	 * <br>
+	 * Or you can just return an instance of Duration class and then call on it the methods above reported.
+	 * <br>
+	 * Another idea is to create a version of this method using strings as parameters...
+	 * <br><br>
+	 * Note: Import java.time.*; in order to use this method 
+	 * <br>
+	 * This library has some methods NOT inclueded in java 1.8, so control wich are usable and which not with the javadoc
+	 * Thats why i decided to put this fuction here and not as methods of TimestampHandler and TimestampHandlerLite classes,
+	 * I wanted those classes to be 100% safe with java 1.8, without importing any external library
+	 * @param first The first timestamp
+	 * @param second The second timestamp
+	 * @return a long variable reporting the days between first and second
+	 * */
+	public long durationBetween(TimestampHandler first, TimestampHandler second) {
+	    LocalDateTime fsTimestamp = LocalDateTime.of(first.getYear(), first.getMonth(), first.getDay(), first.getHour(), first.getMinute(), first.getSecond());
+	    LocalDateTime snTimestamp = LocalDateTime.of(second.getYear(), second.getMonth(), second.getDay(), second.getHour(), second.getMinute(), second.getSecond());
+	    
+	    /*Cambia da toDays a toYears, toMonth, ... per altri tipi di valore*/
+	    return Duration.between(fsTimestamp, snTimestamp).toDays();
+	}
 	
 	/**
 	 * Given an integer to format and a second integer indicating in how many digits it should be formatted, returns a string with the formatted number composed of as many zeros in front as are missing.
